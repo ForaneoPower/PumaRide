@@ -7,7 +7,7 @@ An open source project built with college students of ENES Morelia in mind that 
 
 ## Integrantes:
 
-*Ingeniero en tecnologías: Adrián Lara Álvarez
-*Ingeniero en testing: Emiliano Ramírez
-*Líder: Grecia Leilani Arias Avalos
+* Ingeniero en tecnologías: Adrián Lara Álvarez
+* Ingeniero en testing: Emiliano Ramírez
+* Líder: Grecia Leilani Arias Avalos
 
