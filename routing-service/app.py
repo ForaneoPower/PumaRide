@@ -2,8 +2,10 @@ import openrouteservice
 import os
 from dotenv import load_dotenv
 from fastapi import FastAPI
+from pathlib import Path
 
-load_dotenv()
+env_path = Path(__file__).resolve().parent.parent / ".env"
+load_dotenv(dotenv_path=env_path)
 
 app = FastAPI()
 
@@ -13,12 +15,20 @@ ors = openrouteservice.Client(
 
 def get_place_name(lon, lat):
     try:
-        result = ors.reverse_geocode([lon, lat])
-        return result["features"][0]["properties"]["label"]
+        result = ors.pelias_reverse(
+            point=[lon, lat]
+        )
+
+        features = result.get("features", [])
+
+        if not features:
+            return "Unknown location"
+
+        return features[0]["properties"].get("label", "Unknown location")
+
     except Exception as e:
         print("Reverse geocode error:", e)
         return "Unknown location"
-
 
 @app.get("/route")
 def get_route(start: str, end: str):
