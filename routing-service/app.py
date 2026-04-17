@@ -32,7 +32,7 @@ def get_place_name(lon, lat):
 
 @app.get("/route")
 def get_route(start: str, end: str):
-    start_coords = start.split(", ")
+    start_coords = start.split(",")
     end_coords = end.split(",")
 
     coords = [
