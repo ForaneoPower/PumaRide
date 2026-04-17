@@ -17,7 +17,7 @@ UNAM Morelia
 * Project Manager: Grecia Leilani Arias Avalos
 
 ## Usage of app.py in routing-service in a development enviroment
-To use this test script and obtain information from the openrouteservice API, Yo
+To use this test script and obtain information from the openrouteservice API,
 you first need to install the necessary dependencies (FastAPI, uvicorn, python-dotenv, openrouteservice)
 
 After that, you need access to your own API key which you will use to communicate
