@@ -16,6 +16,13 @@ UNAM Morelia
 * Testing Engineer: Emiliano Ramírez
 * Project Manager: Grecia Leilani Arias Avalos
 
+## Software
+This project relies completely on the openrouteservice API. It provides the necessary tools to calculate the most
+effective routes in the map.
+All of the coordinates and location names are extracted from the [following map](https://maps.openrouteservice.org/#/),
+associated to openrouteservice itself.
+We are using FastAPI for the structure itself, and we manage data requests using HTTP.
+
 ## Usage of app.py in routing-service in a development enviroment
 To use this test script and obtain information from the openrouteservice API,
 you first need to install the necessary dependencies (FastAPI, uvicorn, python-dotenv, openrouteservice)
@@ -41,9 +48,6 @@ estimated duration of the trip in minutes. You might want to use these for ease 
 
 * start: -101.230103,19.647981
 * end: -101.217813,19.679336
-
-If you wish to enter your own coordinates, go to the [following link](https://maps.openrouteservice.org/#/)
-and search for both the start and end point you want.
 
 <details>
   <summary>Click to view code</summary>
