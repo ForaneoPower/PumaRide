@@ -42,3 +42,67 @@ end: -101.217813,19.679336
 
 If you wish to enter your own coordinates, go to the [following link](https://maps.openrouteservice.org/#/)
 and search for both the start and end point you want.
+
+<details>
+  <summary>Click to view code</summary>
+ 
+  ```python
+  import openrouteservice
+import os
+from dotenv import load_dotenv
+from fastapi import FastAPI
+from pathlib import Path
+
+env_path = Path(__file__).resolve().parent.parent / ".env"
+load_dotenv(dotenv_path=env_path)
+
+app = FastAPI()
+
+ors = openrouteservice.Client(
+    key=os.getenv("ORS_API_KEY")
+)
+
+def get_place_name(lon, lat):
+    try:
+        result = ors.pelias_reverse(
+            point=[lon, lat]
+        )
+
+        features = result.get("features", [])
+
+        if not features:
+            return "Unknown location"
+
+        return features[0]["properties"].get("label", "Unknown location")
+
+    except Exception as e:
+        print("Reverse geocode error:", e)
+        return "Unknown location"
+
+@app.get("/route")
+def get_route(start: str, end: str):
+    start_coords = start.split(",")
+    end_coords = end.split(",")
+
+    coords = [
+        [float(start_coords[0]), float(start_coords[1])],
+        [float(end_coords[0]), float(end_coords[1])]
+    ]
+
+    route = ors.directions(coords)
+
+    if "routes" not in route:
+        return {"error": "Route not found", "response": route}
+
+    summary = route["routes"][0]["summary"]
+
+    start_name = get_place_name(coords[0][0], coords[0][1])
+    end_name = get_place_name(coords[1][0], coords[1][1])
+
+    return {
+        "start_name": start_name,
+        "end_name": end_name,
+        "distance_km": round(summary["distance"] / 1000, 2),
+        "duration_min": round(summary["duration"] / 60, 2)
+    }
+ ```
