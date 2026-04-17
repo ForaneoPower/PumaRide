@@ -27,7 +27,9 @@ and the script should work properly.
 
 In your terminal and in the directory pumaride/routing-service, run:
 
+```python
 uvicorn app:app --reload
+```
 
 Then in your browser use the link that shows up on the terminal followed by /docs
 to open the Swagger UI.
@@ -37,8 +39,8 @@ coordinates in [lon, lat]. It should return a .JSON file with the names of both
 the start point and the end point, followed by the distance in km and the 
 estimated duration of the trip in minutes. You might want to use these for ease of use:
 
-start: -101.230103,19.647981
-end: -101.217813,19.679336
+* start: -101.230103,19.647981
+* end: -101.217813,19.679336
 
 If you wish to enter your own coordinates, go to the [following link](https://maps.openrouteservice.org/#/)
 and search for both the start and end point you want.
