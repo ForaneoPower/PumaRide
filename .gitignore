@@ -1,4 +1,5 @@
-
+PumaRide/PumaRide/settings.py
+PumaRide/db.sqlite3
 venv/
 .env
 __pycache__/
