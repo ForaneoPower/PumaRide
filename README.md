@@ -13,7 +13,7 @@ UNAM Morelia
 ## Collaborators:
 
 * Technology Engineer: Adrián Lara Álvarez
-* Testing Engineer: Emiliano Ramírez.
+* Testing Engineer: Emiliano Ramírez,
 * Project Manager: Grecia Leilani Arias Avalos
 
 ## Software
