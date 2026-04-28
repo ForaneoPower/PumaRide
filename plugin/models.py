@@ -1,5 +1,7 @@
 from django.db import models
 
-class Service(models.Model):
-    date_time = models.DateTimeField("date_time")
-    flux = models.FloatField(default = 0.0)
+class Routing(models.Model):
+    start_name = models.CharField(max_length=100)
+    destination_name = models.CharField(max_length=100)
+    duration = models.FloatField()
+    distance = models.FloatField()

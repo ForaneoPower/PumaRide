@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Service
+from .models import Routing
 
 
 def index(request):
-    return HttpResponse("Hello, this is the plugin index page.")
+    routes = Routing.objects.all()
+    return render(request, 'plugin/index.html', {'routes': routes})
