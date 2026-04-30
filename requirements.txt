@@ -8,7 +8,10 @@ click==8.3.2
 Django==6.0.4
 fastapi==0.136.0
 h11==0.16.0
+httpcore==1.0.9
+httpx==0.28.1
 idna==3.11
+leaflet==0.0.3
 openrouteservice==2.3.3
 pydantic==2.13.1
 pydantic_core==2.46.1
