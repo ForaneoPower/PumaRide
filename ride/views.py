@@ -5,6 +5,9 @@ import httpx
 
 FastAPI_URL = "http://localhost:8000" 
 
+def index(request):
+    return render(request, 'ride/index.html')
+
 def request_ride(request):
     if request.method == 'POST':
         form = RideRequestForm(request.POST)

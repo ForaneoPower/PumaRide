@@ -1,7 +1,6 @@
 from django.db import models
 
 class RideRequest(models.Model):
-    # values
     start_name = models.CharField(max_length=255)
     end_name = models.CharField(max_length=255)
     start_lng = models.FloatField()

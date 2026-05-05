@@ -1,22 +1,13 @@
 from django import forms
-from .models import RideRequest
 
-class RideRequestForm(forms.ModelForm):
-    class Meta:
-        model = RideRequest
-        fields = ['start_name', 
-                  'end_name', 
-                  'start_lng', 
-                  'start_lat', 
-                  'end_lng', 
-                  'end_lat',]
-    
+class RideRequestForm(forms.Form):
+    start_name = forms.CharField(widget=forms.HiddenInput())
+    end_name = forms.CharField(widget=forms.HiddenInput())
+    start_lng = forms.FloatField(widget=forms.HiddenInput())
+    start_lat = forms.FloatField(widget=forms.HiddenInput())
+    end_lng = forms.FloatField(widget=forms.HiddenInput())
+    end_lat = forms.FloatField(widget=forms.HiddenInput())
+
     def clean(self):
         cleaned_data = super().clean()
-
-        start_lng = cleaned_data.get('start_lng')
-        start_lat = cleaned_data.get('start_lat')
-        end_lng = cleaned_data.get('end_lng')
-        end_lat = cleaned_data.get('end_lat')
-
         return cleaned_data
