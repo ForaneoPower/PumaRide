@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class PluginConfig(AppConfig):
-    name = 'plugin'
+class RideConfig(AppConfig):
+    name = 'ride'
