@@ -55,7 +55,8 @@ def get_route(start: str, end: str):
         "start_name": start_name,
         "end_name": end_name,
         "distance_km": round(summary["distance"] / 1000, 2),
-        "duration_min": round(summary["duration"] / 60, 2)
+        "duration_min": round(summary["duration"] / 60, 2),
+        "geometry": route["routes"][0]["geometry"]
     }
 
 app.add_middleware(
