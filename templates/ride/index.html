@@ -1,23 +1,207 @@
-{% extends "base.html" %} {% block title %}Ride{% endblock %} {% block content %}
+{% extends "base.html" %}
 
-<head>
-    <style>
-        #map {
-            height: 1000px;
-            width: 100%;
+{% block title %}PumaRide{% endblock %}
+
+{% block extra_head %}
+<style>
+    body { font-family: sans-serif; margin: 0; display: flex; height: 100vh; }
+
+    #sidebar {
+        width: 280px;
+        padding: 20px;
+        background: #f5f5f5;
+        border-right: 1px solid #ddd;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    h2 { margin: 0 0 4px; font-size: 1.2rem; }
+    p  { margin: 0; font-size: 0.85rem; color: #555; }
+
+    .info-box {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 12px;
+        font-size: 0.85rem;
+    }
+
+    .info-box span { display: block; color: #888; font-size: 0.75rem; }
+
+    #route-info { display: none; }
+
+    button {
+        padding: 10px;
+        border: none;
+        border-radius: 8px;
+        background: #f0b429;
+        font-size: 0.9rem;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    button:disabled { background: #ddd; color: #999; cursor: default; }
+
+    #reset-btn {
+        background: transparent;
+        border: 1px solid #ccc;
+        color: #555;
+        font-weight: normal;
+    }
+
+    #map { flex: 1; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div id="sidebar">
+    <div>
+        <h2>PumaRide</h2>
+        <p id="instruction">Click the map to set your pickup point.</p>
+    </div>
+
+    <div class="info-box">
+        <span>Pickup</span>
+        <div id="start-display">Not set</div>
+    </div>
+
+    <div class="info-box">
+        <span>Drop-off</span>
+        <div id="end-display">Not set</div>
+    </div>
+
+    <div class="info-box" id="route-info">
+        <span>Distance</span>
+        <div id="stat-distance">–</div>
+        <br>
+        <span>Duration</span>
+        <div id="stat-duration">–</div>
+    </div>
+
+    <form method="POST" action="{% url 'request_ride' %}" id="ride-form">
+        {% csrf_token %}
+        <input type="hidden" name="start_name" id="start_name">
+        <input type="hidden" name="end_name"   id="end_name">
+        <input type="hidden" name="start_lat"  id="start_lat">
+        <input type="hidden" name="start_lng"  id="start_lng">
+        <input type="hidden" name="end_lat"    id="end_lat">
+        <input type="hidden" name="end_lng"    id="end_lng">
+
+        <button type="submit" id="submit-btn" disabled>Request Ride</button>
+    </form>
+
+    <button id="reset-btn">Clear</button>
+</div>
+
+<div id="map"></div>
+
+<script>
+    // initial location (campus)
+    const CAMPUS_LAT  = 19.648266;
+    const CAMPUS_LNG  =  -101.225087;
+    const FASTAPI_URL = "http://localhost:8001";
+
+    // markers
+    let pickupMarker  = null;
+    let dropoffMarker = null;
+    let routeLayer    = null;
+    let step = 1;
+
+    // map configuration
+    const map = L.map('map').setView([CAMPUS_LAT, CAMPUS_LNG], 15);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    // clicks
+    map.on('click', async function(e) {
+        const { lat, lng } = e.latlng;
+
+        if (step === 1) {
+            if (pickupMarker) map.removeLayer(pickupMarker);
+            pickupMarker = L.marker([lat, lng]).addTo(map).bindPopup('Pickup').openPopup();
+            document.getElementById('start_lat').value  = lat;
+            document.getElementById('start_lng').value  = lng;
+            document.getElementById('start_name').value = `${lng.toFixed(6)},${lat.toFixed(6)}`;
+            document.getElementById('start-display').textContent = `${lng.toFixed(6)}, ${lat.toFixed(6)}`;
+            document.getElementById('instruction').innerHTML = 'Now click to set your <strong>drop-off</strong> point.';
+            step = 2;
+
+        } else if (step === 2) {
+            if (dropoffMarker) map.removeLayer(dropoffMarker);
+            dropoffMarker = L.marker([lat, lng]).addTo(map).bindPopup('Drop-off').openPopup();
+            document.getElementById('end_lat').value  = lat;
+            document.getElementById('end_lng').value  = lng;
+            document.getElementById('end_name').value = `${lng.toFixed(6)},${lat.toFixed(6)}`;
+            document.getElementById('end-display').textContent = `${lng.toFixed(6)}, ${lat.toFixed(6)}`;
+            document.getElementById('instruction').textContent = 'Fetching route…';
+            step = 3;
+            await fetchRoute(pickupMarker.getLatLng(), dropoffMarker.getLatLng());
         }
-    </style>
-</head>
+    });
 
-<body>
-    <div id="map"></div>
-    <script>
-        var map = L.map('map').setView([51.505, -0.09], 13);
+    // fetch routing from FastAPI
+    async function fetchRoute(start, end) {
+        const startParam = `${start.lng},${start.lat}`;
+        const endParam   = `${end.lng},${end.lat}`;
 
+        try {
+            const res  = await fetch(`${FASTAPI_URL}/route?start=${startParam}&end=${endParam}`);
+            const data = await res.json();
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap contributors'
-        }).addTo(map);
-    </script>
-</body>
+            if (data.error) {
+                document.getElementById('instruction').textContent = 'Route not found. Try different points.';
+                step = 2;
+                return;
+            }
+
+            if (data.start_name) {
+                document.getElementById('start_name').value = data.start_name;
+                document.getElementById('start-display').textContent = data.start_name;
+            }
+            if (data.end_name) {
+                document.getElementById('end_name').value = data.end_name;
+                document.getElementById('end-display').textContent = data.end_name;
+            }
+
+            document.getElementById('stat-distance').textContent = data.distance_km + ' km';
+            document.getElementById('stat-duration').textContent = data.duration_min + ' min';
+            document.getElementById('route-info').style.display = 'block';
+
+            // route on map
+            if (routeLayer) map.removeLayer(routeLayer);
+            routeLayer = L.polyline([
+                [start.lat, start.lng],
+                [end.lat,   end.lng]
+            ], { color: 'blue', weight: 4 }).addTo(map);
+            map.fitBounds(routeLayer.getBounds(), { padding: [40, 40] });
+
+            document.getElementById('instruction').textContent = 'Route ready. Click "Request Ride" to confirm.';
+            document.getElementById('submit-btn').disabled = false;
+
+        } catch (err) {
+            document.getElementById('instruction').textContent = 'Error connecting to routing service.';
+            console.error(err);
+            step = 2;
+        }
+    }
+
+    // clear button
+    document.getElementById('reset-btn').addEventListener('click', function() {
+        if (pickupMarker)  { map.removeLayer(pickupMarker);  pickupMarker = null; }
+        if (dropoffMarker) { map.removeLayer(dropoffMarker); dropoffMarker = null; }
+        if (routeLayer)    { map.removeLayer(routeLayer);    routeLayer = null; }
+
+        step = 1;
+        ['start_lat','start_lng','start_name','end_lat','end_lng','end_name'].forEach(id => {
+            document.getElementById(id).value = '';
+        });
+        document.getElementById('start-display').textContent = 'Not set';
+        document.getElementById('end-display').textContent   = 'Not set';
+        document.getElementById('route-info').style.display  = 'none';
+        document.getElementById('submit-btn').disabled = true;
+        document.getElementById('instruction').innerHTML = 'Click the map to set your <strong>pickup</strong> point.';
+    });
+</script>
 {% endblock %}
