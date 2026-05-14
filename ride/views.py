@@ -30,3 +30,9 @@ def request_ride(request):
 def confirmation(request, pk):
     ride = RideRequest.objects.get(pk=pk)
     return render(request, 'ride/confirmation.html', {'ride': ride})
+
+def passenger_profile(request):
+    return render(request, 'ride/passenger_profile.html')
+
+def driver_profile(request):
+    return render(request, 'ride/driver_profile.html')

@@ -1,1 +1,58 @@
-{% extends "base.html" %} {% block title %}PumaRide{% endblock %} {% block extra_head %}{% endblock %}
+{% extends 'base.html' %} {% block title %}Mi Perfil - PumaRide{% endblock %} {% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card border-0 shadow-lg mt-3">
+                <!-- Parte superior decorativa -->
+                <div class="text-center p-4" style="background-color: #003b5c; border-radius: 0.5rem 0.5rem 0 0;">
+                    <div class="position-relative d-inline-block">
+                        <img src="https://ui-avatars.com/api/?name=Valeria+Gomez&background=f1c40f&color=003b5c&size=100" class="rounded-circle border border-4 border-white shadow" alt="Avatar">
+                        <span class="position-absolute bottom-0 end-0 bg-success border border-2 border-white rounded-circle p-2" title="En línea"></span>
+                    </div>
+                    <h3 class="text-white mt-3 mb-0">Valeria Gómez</h3>
+                    <p class="text-white-50 small">Estudiante de la ENES</p>
+                </div>
+
+                <div class="card-body p-4">
+                    <div class="mb-4">
+                        <h6 class="text-muted text-uppercase small fw-bold mb-3">Información Académica</h6>
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="bi bi-card-text text-primary fs-4 me-3"></i>
+                            <div>
+                                <div class="text-muted small">Número de Cuenta</div>
+                                <div class="fw-bold">319284756</div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="bi bi-geo-alt text-danger fs-4 me-3"></i>
+                            <div>
+                                <div class="text-muted small">Institución</div>
+                                <div class="fw-bold">ENES Morelia - UNAM</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-3">
+                        <a href="#" class="btn btn-puma-oro py-2 shadow-sm">
+                            <i class="bi bi-search me-2"></i>Buscar un Ride
+                        </a>
+                        <a href="#" class="btn btn-outline-primary py-2">
+                            <i class="bi bi-steering-wheel me-2"></i>Cambiar a Conductor
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card-footer bg-light border-0 text-center py-3">
+                    <button class="btn btn-sm btn-link text-decoration-none text-muted">
+                        <i class="bi bi-pencil-square me-1"></i>Editar mi perfil
+                    </button>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <p class="text-muted small">PumaRide Proyecto Interno © 2026</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
