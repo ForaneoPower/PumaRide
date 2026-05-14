@@ -21,3 +21,4 @@ This project relies completely on the openrouteservice API. It provides the nece
 effective routes in the map.
 Leaflet is used for the interactive map UI.
 We are using FastAPI for the structure itself, and we manage data requests using HTTP.
+It will have registered the data of only an user and a driver.
