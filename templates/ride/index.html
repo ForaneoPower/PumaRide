@@ -1,11 +1,12 @@
-{% extends "base.html" %}
-
-{% block title %}PumaRide{% endblock %}
-
-{% block extra_head %}
+{% extends "base.html" %} {% block title %}PumaRide{% endblock %} {% block extra_head %}
 <style>
-    body { font-family: sans-serif; margin: 0; display: flex; height: 100vh; }
-
+    body {
+        font-family: sans-serif;
+        margin: 0;
+        display: flex;
+        height: 100vh;
+    }
+    
     #sidebar {
         width: 280px;
         padding: 20px;
@@ -15,10 +16,18 @@
         flex-direction: column;
         gap: 14px;
     }
-
-    h2 { margin: 0 0 4px; font-size: 1.2rem; }
-    p  { margin: 0; font-size: 0.85rem; color: #555; }
-
+    
+    h2 {
+        margin: 0 0 4px;
+        font-size: 1.2rem;
+    }
+    
+    p {
+        margin: 0;
+        font-size: 0.85rem;
+        color: #555;
+    }
+    
     .info-box {
         background: #fff;
         border: 1px solid #ddd;
@@ -26,11 +35,17 @@
         padding: 12px;
         font-size: 0.85rem;
     }
-
-    .info-box span { display: block; color: #888; font-size: 0.75rem; }
-
-    #route-info { display: none; }
-
+    
+    .info-box span {
+        display: block;
+        color: #888;
+        font-size: 0.75rem;
+    }
+    
+    #route-info {
+        display: none;
+    }
+    
     button {
         padding: 10px;
         border: none;
@@ -40,24 +55,37 @@
         font-weight: bold;
         cursor: pointer;
     }
-
-    button:disabled { background: #ddd; color: #999; cursor: default; }
-
+    
+    button:disabled {
+        background: #ddd;
+        color: #999;
+        cursor: default;
+    }
+    
     #reset-btn {
         background: transparent;
         border: 1px solid #ccc;
         color: #555;
         font-weight: normal;
     }
-
-    #map { flex: 1; }
+    
+    #map {
+        flex: 1;
+    }
+    
+    .brand {
+        display: inline-block;
+        margin-bottom: 20px;
+    }
 </style>
-{% endblock %}
-
-{% block content %}
+{% endblock %} {% block content %}
 <div id="sidebar">
     <div>
+        <a href="{% url 'home' %}#pag" class="brand"> Return to homepage
+        </a>
+        <br>
         <h2>PumaRide</h2>
+
         <p id="instruction">Click the map to set your pickup point.</p>
     </div>
 
@@ -82,11 +110,11 @@
     <form method="POST" action="{% url 'request_ride' %}" id="ride-form">
         {% csrf_token %}
         <input type="hidden" name="start_name" id="start_name">
-        <input type="hidden" name="end_name"   id="end_name">
-        <input type="hidden" name="start_lat"  id="start_lat">
-        <input type="hidden" name="start_lng"  id="start_lng">
-        <input type="hidden" name="end_lat"    id="end_lat">
-        <input type="hidden" name="end_lng"    id="end_lng">
+        <input type="hidden" name="end_name" id="end_name">
+        <input type="hidden" name="start_lat" id="start_lat">
+        <input type="hidden" name="start_lng" id="start_lng">
+        <input type="hidden" name="end_lat" id="end_lat">
+        <input type="hidden" name="end_lng" id="end_lng">
 
         <button type="submit" id="submit-btn" disabled>Request Ride</button>
     </form>
@@ -98,14 +126,14 @@
 
 <script>
     // initial location (campus)
-    const CAMPUS_LAT  = 19.648266;
-    const CAMPUS_LNG  =  -101.225087;
+    const CAMPUS_LAT = 19.648266;
+    const CAMPUS_LNG = -101.225087;
     const FASTAPI_URL = "http://localhost:8001";
 
     // markers
-    let pickupMarker  = null;
+    let pickupMarker = null;
     let dropoffMarker = null;
-    let routeLayer    = null;
+    let routeLayer = null;
     let step = 1;
 
     // map configuration
@@ -116,13 +144,16 @@
 
     // clicks
     map.on('click', async function(e) {
-        const { lat, lng } = e.latlng;
+        const {
+            lat,
+            lng
+        } = e.latlng;
 
         if (step === 1) {
             if (pickupMarker) map.removeLayer(pickupMarker);
             pickupMarker = L.marker([lat, lng]).addTo(map).bindPopup('Pickup').openPopup();
-            document.getElementById('start_lat').value  = lat;
-            document.getElementById('start_lng').value  = lng;
+            document.getElementById('start_lat').value = lat;
+            document.getElementById('start_lng').value = lng;
             document.getElementById('start_name').value = `${lng.toFixed(6)},${lat.toFixed(6)}`;
             document.getElementById('start-display').textContent = `${lng.toFixed(6)}, ${lat.toFixed(6)}`;
             document.getElementById('instruction').innerHTML = 'Now click to set your <strong>drop-off</strong> point.';
@@ -131,8 +162,8 @@
         } else if (step === 2) {
             if (dropoffMarker) map.removeLayer(dropoffMarker);
             dropoffMarker = L.marker([lat, lng]).addTo(map).bindPopup('Drop-off').openPopup();
-            document.getElementById('end_lat').value  = lat;
-            document.getElementById('end_lng').value  = lng;
+            document.getElementById('end_lat').value = lat;
+            document.getElementById('end_lng').value = lng;
             document.getElementById('end_name').value = `${lng.toFixed(6)},${lat.toFixed(6)}`;
             document.getElementById('end-display').textContent = `${lng.toFixed(6)}, ${lat.toFixed(6)}`;
             document.getElementById('instruction').textContent = 'Fetching route…';
@@ -144,10 +175,10 @@
     // fetch routing from FastAPI
     async function fetchRoute(start, end) {
         const startParam = `${start.lng},${start.lat}`;
-        const endParam   = `${end.lng},${end.lat}`;
+        const endParam = `${end.lng},${end.lat}`;
 
         try {
-            const res  = await fetch(`${FASTAPI_URL}/route?start=${startParam}&end=${endParam}`);
+            const res = await fetch(`${FASTAPI_URL}/route?start=${startParam}&end=${endParam}`);
             const data = await res.json();
 
             if (data.error) {
@@ -172,8 +203,13 @@
             // route on map
             if (routeLayer) map.removeLayer(routeLayer);
             const coords = decodePolyline(data.geometry);
-            routeLayer = L.polyline(coords, { color: 'blue', weight: 4 }).addTo(map);
-            map.fitBounds(routeLayer.getBounds(), { padding: [40, 40] });
+            routeLayer = L.polyline(coords, {
+                color: 'blue',
+                weight: 4
+            }).addTo(map);
+            map.fitBounds(routeLayer.getBounds(), {
+                padding: [40, 40]
+            });
 
             document.getElementById('instruction').textContent = 'Route ready. Click "Request Ride" to confirm.';
             document.getElementById('submit-btn').disabled = false;
@@ -187,17 +223,26 @@
 
     // clear button
     document.getElementById('reset-btn').addEventListener('click', function() {
-        if (pickupMarker)  { map.removeLayer(pickupMarker);  pickupMarker = null; }
-        if (dropoffMarker) { map.removeLayer(dropoffMarker); dropoffMarker = null; }
-        if (routeLayer)    { map.removeLayer(routeLayer);    routeLayer = null; }
+        if (pickupMarker) {
+            map.removeLayer(pickupMarker);
+            pickupMarker = null;
+        }
+        if (dropoffMarker) {
+            map.removeLayer(dropoffMarker);
+            dropoffMarker = null;
+        }
+        if (routeLayer) {
+            map.removeLayer(routeLayer);
+            routeLayer = null;
+        }
 
         step = 1;
-        ['start_lat','start_lng','start_name','end_lat','end_lng','end_name'].forEach(id => {
+        ['start_lat', 'start_lng', 'start_name', 'end_lat', 'end_lng', 'end_name'].forEach(id => {
             document.getElementById(id).value = '';
         });
         document.getElementById('start-display').textContent = 'Not set';
-        document.getElementById('end-display').textContent   = 'Not set';
-        document.getElementById('route-info').style.display  = 'none';
+        document.getElementById('end-display').textContent = 'Not set';
+        document.getElementById('route-info').style.display = 'none';
         document.getElementById('submit-btn').disabled = true;
         document.getElementById('instruction').innerHTML = 'Click the map to set your <strong>pickup</strong> point.';
     });
@@ -205,10 +250,13 @@
     // polyline decoder (google's algorithm)
     function decodePolyline(encoded) {
         let points = [];
-        let index = 0, lat = 0, lng = 0;
+        let index = 0,
+            lat = 0,
+            lng = 0;
 
         while (index < encoded.length) {
-            let b, shift = 0, result = 0;
+            let b, shift = 0,
+                result = 0;
             do {
                 b = encoded.charCodeAt(index++) - 63;
                 result |= (b & 0x1f) << shift;
@@ -217,7 +265,8 @@
             const dlat = ((result & 1) ? ~(result >> 1) : (result >> 1));
             lat += dlat;
 
-            shift = 0; result = 0;
+            shift = 0;
+            result = 0;
             do {
                 b = encoded.charCodeAt(index++) - 63;
                 result |= (b & 0x1f) << shift;
