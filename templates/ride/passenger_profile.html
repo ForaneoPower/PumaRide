@@ -40,7 +40,7 @@
     }
     
     .pr-nav .brand {
-        font-family: 'Playfair Display', serif;
+        font-family: 'DM Sans', sans-serif;
         color: var(--oro);
         font-size: 1.5rem;
         letter-spacing: .02em;
@@ -81,7 +81,7 @@
     .hero-band::before {
         content: 'PUMARIDE';
         position: absolute;
-        font-family: 'Playfair Display', serif;
+        font-family: 'DM Sans', sans-serif;
         font-size: 9rem;
         color: rgba(255, 255, 255, .04);
         right: -1rem;
@@ -100,7 +100,7 @@
     }
     
     .hero-band h1 {
-        font-family: 'Playfair Display', serif;
+        font-family: 'DM Sans', sans-serif;
         color: var(--blanco);
         font-size: 2rem;
         margin: .3rem 0 0;
@@ -164,7 +164,7 @@
     }
     
     .avatar-info h2 {
-        font-family: 'Playfair Display', serif;
+        font-family: 'DM Sans', sans-serif;
         font-size: 1.5rem;
         margin: 0 0 .2rem;
         color: var(--azul);
@@ -259,7 +259,7 @@
     }
     
     .stat-cell .num {
-        font-family: 'Playfair Display', serif;
+        font-family: 'DM Sans', sans-serif;
         font-size: 1.6rem;
         color: var(--azul);
         line-height: 1;
@@ -394,7 +394,7 @@
 
 <!-- NAVBAR -->
 <nav class="pr-nav">
-    <a href="{% url 'index' %}" class="brand">
+    <a href="{% url 'home' %}" class="brand">
     PumaRide
     <span>ENES Morelia · UNAM</span>
   </a>
@@ -476,14 +476,6 @@
       </a>
             <a href="{% url 'passenger_profile' %}" class="btn-primary-pr">
         Change to driver mode
-      </a>
-        </div>
-
-        <!-- Footer -->
-        <div class="card-foot">
-            <span><span class="dot"></span>Active session</span>
-            <a href="#" style="color: var(--muted); text-decoration: none; font-size: .8rem;">
-        Log out
       </a>
         </div>
 
