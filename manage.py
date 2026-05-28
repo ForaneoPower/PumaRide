@@ -18,5 +18,5 @@ def main():
     execute_from_command_line(sys.argv)
 
 
-if __name__ == '__main__':   #Configura para el sttings.py
+if __name__ == '__main__':
     main()

@@ -27,7 +27,7 @@ def request_ride(request):
         form = RideRequestForm()
     return render(request, 'ride/index.html', {'form': form})
 
-def confirmation(request, pk):   #Muestra los detalles del viaje por la primary key
+def confirmation(request, pk):
     ride = RideRequest.objects.get(pk=pk)
     return render(request, 'ride/confirmation.html', {'ride': ride})
 

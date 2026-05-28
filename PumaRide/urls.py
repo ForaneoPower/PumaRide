@@ -20,5 +20,5 @@ from django.urls import path, include
 urlpatterns = [
     path('service/', include('ride.urls')),
     path('admin/', admin.site.urls),
-    path('', include('core.urls')),    #Lista de rutas URL de Django
+    path('', include('core.urls')),
 ]
