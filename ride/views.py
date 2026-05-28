@@ -34,5 +34,5 @@ def confirmation(request, pk):
 def passenger_profile(request):
     return render(request, 'ride/passenger_profile.html')
 
-def driver_profile(request):  
+def driver_profile(request):
     return render(request, 'ride/driver_profile.html')
