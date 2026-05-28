@@ -31,7 +31,7 @@ def get_place_name(lon, lat):
         print("Reverse geocode error:", e)
         return "Unknown location"
 
-@app.get("/route")
+@app.get("/route") #url
 def get_route(start: str, end: str):
     start_coords = start.split(",")
     end_coords = end.split(",")
