@@ -61,7 +61,7 @@ uvicorn main:app --reload
 
 ## Testing:
 
-![Testing](images/Testing.jpg)
+![Testing](images/Testing)
 
 ## Results:
 
