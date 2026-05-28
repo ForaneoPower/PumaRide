@@ -3,9 +3,9 @@
 
 ## Collaborators:
 
-* Technology Engineer: Adrián Lara Álvarez 
-* Testing Engineer: Emiliano Ramírez,
-* Project Manager: Grecia Leilani Arias Avalos
+* Technology Engineer: Adrián Lara 
+* Testing Engineer: Emiliano Ramírez 
+* Project Manager: Grecia Arias
 
 ## Tech Stack
 # PumaRide
