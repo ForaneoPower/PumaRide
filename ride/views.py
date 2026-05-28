@@ -27,12 +27,12 @@ def request_ride(request):
         form = RideRequestForm()
     return render(request, 'ride/index.html', {'form': form})
 
-def confirmation(request, pk):
+def confirmation(request, pk):   #Muestra los detalles del viaje por la primary key
     ride = RideRequest.objects.get(pk=pk)
     return render(request, 'ride/confirmation.html', {'ride': ride})
 
 def passenger_profile(request):
     return render(request, 'ride/passenger_profile.html')
 
-def driver_profile(request):
+def driver_profile(request):  
     return render(request, 'ride/driver_profile.html')
