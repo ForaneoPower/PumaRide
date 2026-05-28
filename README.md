@@ -1,7 +1,13 @@
 
-# Equipo 4
+# Team 4
 
+## Collaborators:
 
+* Technology Engineer: Adrián Lara Álvarez 
+* Testing Engineer: Emiliano Ramírez,
+* Project Manager: Grecia Leilani Arias Avalos
+
+## Tech Stack
 # PumaRide
 An open source project made by and for college students of ENES Morelia in 
 mind that aims 
@@ -10,13 +16,7 @@ where they are and where they want to go within the community members of
 UNAM Morelia
  -development-
 
-## Collaborators:
 
-* Technology Engineer: Adrián Lara Álvarez
-* Testing Engineer: Emiliano Ramírez,
-* Project Manager: Grecia Leilani Arias Avalos
-
-## Tech Stack
 This project relies completely on the openrouteservice API. It provides the necessary tools to calculate the most
 effective routes in the map.
 Leaflet is used for the interactive map UI.
