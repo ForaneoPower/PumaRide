@@ -1,7 +1,10 @@
 # PumaRide
 ---
 
-<img width="360" height="222" alt="image" src="https://github.com/user-attachments/assets/519cdbc4-09da-4dfd-a304-fee05cd55fea" />
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/519cdbc4-09da-4dfd-a304-fee05cd55fea" width="360" />
+  <img src="https://github.com/user-attachments/assets/5fcb5c81-0422-4742-a38a-9db59e0f54f9" width="360" />
+</p>
 
 ---
 
