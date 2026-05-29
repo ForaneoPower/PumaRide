@@ -1,68 +1,127 @@
 # PumaRide
+---
 
-![Logo ENES](images/Enes%20logo.jpg)
+<img width="360" height="222" alt="image" src="https://github.com/user-attachments/assets/519cdbc4-09da-4dfd-a304-fee05cd55fea" />
 
-* Universidad Nacional Autónoma de México (UNAM)
-* Escuela nacional de Estudios Superiores Unidad Morelia (ENES Morelia)
+---
 
-## Team 4: Collaborators:
+## Institution
 
-* Technology Engineer: Adrián Lara adrianlara.jpg@gmail.com
-* Testing Engineer: Emiliano Ramírez emi4play777@gmail.com
-* Project Manager: Grecia Arias greciariaass@gmail.com
+* **Universidad Nacional Autónoma de México (UNAM)**
+* **Escuela Nacional de Estudios Superiores Unidad Morelia (ENES Morelia)**
 
-## Licence: 
+## About the Project
 
-GNU General Public License v3.0
-
-## Description:
-
-An open source project made by and for college students of ENES Morelia in 
-mind that aims 
-to give them a platform where they can request free rides depending on 
-where they are and where they want to go within the community members of 
-UNAM Morelia
- -development-
-
-
-## Methodology:
-
-For developing this project we used differents requiremets:
-
-* This project relies completely on the openrouteservice API. It provides the necessary tools to calculate the most
-effective routes in the map. (API link: https://openrouteservice.org)
-* Leaflet is used for the interactive map UI.
-* We are using FastAPI for the structure itself, and we manage data requests using HTTP.
-* We are using Django for the creation of the creation of the web application
-* It will have registered the data of only an user and a driver.
-
-## Implementation:
-* Bsckend: Python, Django
-* 
-* Frontend: HTML, CSS, JavaScript
-
-## Installation and execution for development:
-
-### Instalation:
-
-1. Clone the repository: git clone https://github.com/ForaneoPower/PumaRide?tab=GPL-3.0-1-ov-file
-2. Create and activate the virtual environment: python -m venv venv
-
- source venv/bin/activate (for linux)
-
-3. Install required packages: pip install -r requirements.txt
-
-### Execution:
-
-1. To start the local development server using **Uvicorn**, run the following command:
-
-uvicorn main:app --reload
-
-
-## Testing:
+**PumaRide** is an open-source project created for the Cloud Computing course, apart of the Data Science major.
+The project aims to provide a community-based ride-sharing platform where students can request and offer free rides within the college community. The goal is to facilitate collaborative transportation for college students.
 
 ![Testing](images/Testing)
 
+## Team 4 - Collaborators
+
+
+* **Technology Engineer** - Adrián Lara [adrianlara.jpg@gmail.com](mailto:adrianlara.jpg@gmail.com)
+* **Testing Engineer** - Emiliano Ramírez [emi4play777@gmail.com](mailto:emi4play777@gmail.com)   
+* **Project Manager** Grecia Arias [greciariaass@gmail.com](mailto:greciariaass@gmail.com)
+
+## License
+
+This project is licensed under the **GNU General Public License v3.0 (GPL-3.0)**.
+
+## Tech Stack
+
+### Backend
+
+* Python
+* Django
+* FastAPI
+* Uvicorn
+* nginx
+* OpenRouteService API
+* AWS EC2
+
+### Frontend
+
+* HTML
+* CSS
+* JavaScript
+* Leaflet
+
+## Methodology
+
+The development of this project relies on the following technologies and tools:
+
+* **OpenRouteService API** is used to calculate efficient routes between two coordinates.
+  Website: https://openrouteservice.org
+
+* **Leaflet** is used to build the interactive map interface.
+  Website: https://leafletjs.com/
+
+* **FastAPI** handles API development and HTTP request management.
+  Website: https://fastapi.tiangolo.com/
+
+* **Django** is used for the web application structure and backend management.
+  Website: https://www.djangoproject.com/
+
+* **AWS EC2** was used alongside **nginx** during deployment.
+  Website: https://aws.amazon.com/
+
+## Installation and Development Setup
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/ForaneoPower/PumaRide.git
+cd PumaRide
+```
+
+### 2. Create a Virtual Environment
+
+```bash
+python -m venv venv
+```
+
+### 3. Activate the Virtual Environment
+
+#### Linux / macOS
+
+```bash
+source venv/bin/activate
+```
+
+#### Windows
+
+```bash
+venv\Scripts\activate
+```
+
+### 4. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## Running the Development Server
+
+In the main directory, start the local **Django** server running:
+
+```bash
+python manage.py runserver
+```
+
+Inside the routing-service directory, start the local development server using **Uvicorn**:
+
+```bash
+uvicorn app:app --port 8001
+```
+Navigate to the [following page](http://127.0.0.1:8000/) in your preferred browser.
+
+## Deployment
+
+In order to skip the installation process and test the service directly, we decided to use an EC2 instance with an elastic IP that automatically starts the app on your browser. You can use it in the [following link](http://100.49.84.140/)
+
 ## Results:
 
-A functional web application was developed that asks for the initial point of the route and retunrns the most effective route with the objective of being used by the driver and the passenger
+A functional web application was developed that asks for the initial point of the route by clicking the map and retunrns the most effective route with the objective of being used by the driver and the passenger of the ride.
