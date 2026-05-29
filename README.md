@@ -123,7 +123,7 @@ Navigate to the [following page](http://127.0.0.1:8000/) in your preferred brows
 
 ## Deployment
 
-In order to skip the installation process and test the service directly, we decided to use an EC2 instance with an elastic IP that automatically starts the app on your browser. You can use it in the [following link](http://100.49.84.140/)
+In order to skip the installation process and test the service directly, an EC2 instance was used with an elastic IP that automatically starts the app on your browser. You can use it in the [following link](http://100.49.84.140/)
 
 ## Results:
 
