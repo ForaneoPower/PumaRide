@@ -79,6 +79,10 @@
     }
 </style>
 {% endblock %} {% block content %}
+<h2>
+Adrián
+    </h2>   
+
 <div id="sidebar">
     <div>
         <a href="{% url 'home' %}#pag" class="brand"> Return to homepage
@@ -128,7 +132,7 @@
     // initial location (campus)
     const CAMPUS_LAT = 19.648266;
     const CAMPUS_LNG = -101.225087;
-    const FASTAPI_URL = "routing/";
+    const FASTAPI_URL = "http://localhost:8001";
 
     // markers
     let pickupMarker = null;
