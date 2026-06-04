@@ -13,6 +13,12 @@
 * **Universidad Nacional Autónoma de México (UNAM)**
 * **Escuela Nacional de Estudios Superiores Unidad Morelia (ENES Morelia)**
 
+## Team
+
+* **Technology Engineer** - Adrián Lara [adrianlara.jpg@gmail.com](mailto:adrianlara.jpg@gmail.com)
+* **Testing Engineer** - Emiliano Ramírez [emi4play777@gmail.com](mailto:emi4play777@gmail.com)   
+* **Project Manager** Grecia Arias [greciariaass@gmail.com](mailto:greciariaass@gmail.com)
+
 ## About the Project
 
 **PumaRide** is an open-source project created for the Cloud Computing course, apart of the Data Science major.
@@ -20,16 +26,6 @@ The project aims to provide a community-based ride-sharing platform where studen
 
 ![Testing](images/Testing)
 
-## Team 4 - Collaborators
-
-
-* **Technology Engineer** - Adrián Lara [adrianlara.jpg@gmail.com](mailto:adrianlara.jpg@gmail.com)
-* **Testing Engineer** - Emiliano Ramírez [emi4play777@gmail.com](mailto:emi4play777@gmail.com)   
-* **Project Manager** Grecia Arias [greciariaass@gmail.com](mailto:greciariaass@gmail.com)
-
-## License
-
-This project is licensed under the **GNU General Public License v3.0 (GPL-3.0): **https://www.gnu.org/licenses/gpl-3.0.en.html 
 
 ## Tech Stack
 
@@ -128,3 +124,7 @@ In order to skip the installation process and test the service directly, an EC2 
 ## Results:
 
 A functional web application was developed that asks for the initial point of the route by clicking the map and retunrns the most effective route with the objective of being used by the driver and the passenger of the ride.
+
+## License
+
+This project is licensed under the **GNU General Public License v3.0 (GPL-3.0): **https://www.gnu.org/licenses/gpl-3.0.en.html 
