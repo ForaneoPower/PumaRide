@@ -26,25 +26,32 @@ The project aims to provide a community-based ride-sharing platform where studen
 
 ![Testing](images/Testing)
 
+## Justification
+
+A structured transportation system that connects students within the university community has not been established at UNAM Campus Morelia. Daily mobility challenges are faced by many students, especially those who live far from campus or depend on limited public transport options. This gap is addressed by PumaRide through the offering of a free, community-driven ride-sharing platform exclusively designed for verified members of the institution, where solidarity, sustainability, and a stronger campus community are promoted.
+
+## General Objective
+
+A web-based ride-sharing platform was developed to allow drivers and passengers, both verified members of UNAM Campus Morelia, to coordinate free rides within the university community. A route can be published by drivers by setting a starting point and a destination on an interactive map, while available routes can be browsed by passengers, who can decide whether their transportation needs are met.
 
 ## Tech Stack
 
 ### Backend
 
-* Python
-* Django
-* FastAPI
-* Uvicorn
-* nginx
-* OpenRouteService API
+* Python 3.12.6
+* Django 6.0.4
+* FastAPI 0.136.0
+* Uvicorn 0.44.0
+* nginx 1.24.0 (Ubuntu)
+* OpenRouteService API 2.3.3
 * AWS EC2
 
 ### Frontend
 
-* HTML
-* CSS
-* JavaScript
-* Leaflet
+* HTML5
+* CSS3
+* JavaScript ES6
+* Leaflet 0.0.3
 
 ## Methodology
 
@@ -128,3 +135,13 @@ A functional web application was developed that asks for the initial point of th
 ## License
 
 This project is licensed under the **GNU General Public License v3.0 (GPL-3.0): **https://www.gnu.org/licenses/gpl-3.0.en.html 
+
+## Roadmap
+
+This project was developed as the first stage, where the core ride-sharing functionality was established. The following features have been identified for future development stages:
+
+* User authentication will be implemented using the student credential or student ID number
+* Real-time ride tracking will be integrated
+* In-app notifications for route matches will be added
+* A rating system for drivers and passengers will be introduced
+* Integration with the official UNAM Campus Morelia systems will be carried out
