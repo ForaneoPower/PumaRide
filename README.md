@@ -25,8 +25,8 @@
 The project aims to provide a community-based ride-sharing platform where students can request and offer free rides within the college community. The goal is to facilitate collaborative transportation for college students.
 
 ![Testing](images/Testing)
-![Driver](images/Driver)
-![User](images/User)
+![Driver](images/Driver.jpeg)
+![User](images/User.jpeg)
 
 ## Justification
 
