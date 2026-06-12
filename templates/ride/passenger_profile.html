@@ -394,7 +394,7 @@
 
 <!-- NAVBAR -->
 <nav class="pr-nav">
-    <a href="{% url 'home' %}" class="brand">
+    <a hr ef="{% url 'home' %}" class="brand">
     PumaRide
     <span>ENES Morelia · UNAM</span>
   </a>
@@ -417,64 +417,22 @@
 <div class="container py-4" style="max-width: 560px;">
     <div class="profile-card">
 
-        <!-- Avatar + nombre -->
-        <div class="avatar-strip">
-            <div class="avatar-wrap">
-                <img src="https://ui-avatars.com/api/?name=Juan+Perez&background=003b5c&color=f1c40f&size=128&bold=true" alt="Foto de perfil">
-                <span class="status-dot"></span>
-            </div>
-            <div class="avatar-info">
-                <h2>Juan Pérez</h2>
-                <span class="role-badge"> Student · Passenger</span>
-            </div>
-        </div>
+        <h2>Passenger: {{passenger.get_full_name }}</h2>
 
-        <!-- Info -->
-        <div class="info-grid">
-            <div class="info-cell">
-                <label>Student number</label>
-                <p><span class="icon-pill">454 324 788</span></p>
-            </div>
-            <div class="info-cell">
-                <label>Institution</label>
-                <p><span class="icon-pill">ENES Morelia</span></p>
-            </div>
-            <div class="info-cell full">
-                <label>Institutional mail</label>
-                <p><span class="icon-pill">juan.perez@enesmorelia.unam.mx</span></p>
-            </div>
-            <div class="info-cell">
-                <label>Campus</label>
-                <p><span class="icon-pill">Morelia, Mich.</span></p>
-            </div>
-            <div class="info-cell">
-                <label>Member since</label>
-                <p><span class="icon-pill">January 2026</span></p>
-            </div>
-        </div>
+        <span class="icon-pill">ID number: {{passenger.student_id }}</span>
+        <span class="icon-pill">Institution{{passenger.institution}}</span>
+        <span class="icon-pill">Mail:{{passenger.email }}</span>
+        <span class="icon-pill">Institution: {{passenger.campus}}</span>
 
-        <!-- Stats -->
-        <div class="stats-row">
-            <div class="stat-cell">
-                <div class="num">12</div>
-                <div class="lbl">Rides taken</div>
-            </div>
-            <div class="stat-cell">
-                <div class="num">4.9</div>
-                <div class="lbl">Score</div>
-            </div>
-            <div class="stat-cell">
-                <div class="num">0</div>
-                <div class="lbl">Cancelations</div>
-            </div>
-        </div>
+        <div class="num">Rides taken: {{passenger.rides_taken}}</div>
+        <div class="num">Passenger score: {{passenger.score }}</div>
 
         <!-- Botones -->
         <div class="actions">
             <a href="{% url 'index' %}" class="btn-gold-pr">
         Find Ride
       </a>
-            <a href="{% url 'passenger_profile' %}" class="btn-primary-pr">
+            <a href="{% url 'driver_profile' %}" class="btn-primary-pr">
         Change to driver mode
       </a>
         </div>

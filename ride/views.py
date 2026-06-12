@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import RideRequest
+from .models import RideRequest, Driver, User
 from .forms import RideRequestForm
 import httpx
 
@@ -31,8 +31,11 @@ def confirmation(request, pk):
     ride = RideRequest.objects.get(pk=pk)
     return render(request, 'ride/confirmation.html', {'ride': ride})
 
+
 def passenger_profile(request):
-    return render(request, 'ride/passenger_profile.html')
+    passenger = User.objects.get(username='juan.perez')
+    return render(request, 'ride/passenger_profile.html', {'passenger': passenger})
 
 def driver_profile(request):
-    return render(request, 'ride/driver_profile.html')
+    driver = Driver.objects.get(license_number='MICH-2847-SR')
+    return render(request, 'ride/driver_profile.html', {'driver': driver})

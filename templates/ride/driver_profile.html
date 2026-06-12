@@ -447,78 +447,17 @@
 <div class="container py-4" style="max-width: 560px;">
     <div class="profile-card">
 
-        <!-- Avatar + nombre -->
-        <div class="avatar-strip">
-            <div class="avatar-wrap">
-                <img src="https://ui-avatars.com/api/?name=Sofia+Reyes&background=003b5c&color=f1c40f&size=128&bold=true" alt="Foto de perfil">
-                <span class="status-dot"></span>
-            </div>
-            <div class="avatar-info">
-                <h2>Sofía Reyes</h2>
-                <span class="role-badge"> Student · Driver</span>
-            </div>
-        </div>
+        <h2>Driver: {{driver.user.get_full_name }}</h2>
 
-        <!-- Info personal -->
-        <div class="info-grid">
-            <div class="info-cell">
-                <label>Student number</label>
-                <p><span class="icon-pill">423 817 905</span></p>
-            </div>
-            <div class="info-cell">
-                <label>Institution</label>
-                <p><span class="icon-pill">ENES Morelia</span></p>
-            </div>
-            <div class="info-cell full">
-                <label>Institutional mail</label>
-                <p><span class="icon-pill">sofia.reyes@enesmorelia.unam.mx</span></p>
-            </div>
-            <div class="info-cell">
-                <label>Drivers licence</label>
-                <p><span class="icon-pill">MICH-2847-SR</span></p>
-            </div>
-            <div class="info-cell">
-                <label>Driver since</label>
-                <p><span class="icon-pill">Marzo 2025</span></p>
-            </div>
-        </div>
-
-        <!-- Vehículo -->
-        <div class="vehicle-card">
-            <div class="v-title">Vehicle data</div>
-            <div>
-                <div class="v-label">Brand and model</div>
-                <div class="v-val">Nissan Versa 2020</div>
-            </div>
-            <div>
-                <div class="v-label">Color</div>
-                <div class="v-val">Gris plata</div>
-            </div>
-            <div>
-                <div class="v-label">Licence plate</div>
-                <div class="v-val">MHN-482-B</div>
-            </div>
-            <div>
-                <div class="v-label">Capacity</div>
-                <div class="v-val">4 passengers</div>
-            </div>
-        </div>
-
-        <!-- Stats -->
-        <div class="stats-row">
-            <div class="stat-cell">
-                <div class="num">8</div>
-                <div class="lbl">Given rides</div>
-            </div>
-            <div class="stat-cell">
-                <div class="num">5.0</div>
-                <div class="lbl">Score</div>
-            </div>
-            <div class="stat-cell">
-                <div class="num">0</div>
-                <div class="lbl">Cancelations</div>
-            </div>
-        </div>
+        <span class="icon-pill">ID number:{{driver.user.student_id }}</span><br>
+        <span class="icon-pill">Institution: {{driver.user.institution }}</span><br>
+        <span class="icon-pill">Mail: {{driver.user.email }}</span><br>
+        <span class="icon-pill">Lisence number: {{driver.license_number }}</span><br>
+        <span class="icon-pill">Driver since: {{driver.driver_since }}</span><br>
+        <div class="v-val">Vehicle plate: {{driver.vehicle_plate }}</div><br>
+        <div class="v-val">Vehicle capacity: {{driver.vehicle_capacity }} passengers</div><br>
+        <div class="num">Rides given: {{driver.rides_given }}</div><br>
+        <div class="num">Driver score: {{driver.score }}</div><br>
 
         <!-- Botones -->
         <div class="actions">
